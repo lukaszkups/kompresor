@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resizer</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./assets/main.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <main id="app" class="stage" data-state="idle">
+      <header class="brand">
+        <h1 class="brand-name">Resizer</h1>
+        <p class="brand-tagline">Drop a PDF, image, video, or audio file</p>
+      </header>
+
+      <section
+        id="dropzone"
+        class="dropzone"
+        tabindex="0"
+        role="button"
+        aria-label="Drop a file here or browse"
+      >
+        <div class="dropzone-ring" aria-hidden="true"></div>
+        <p class="dropzone-label">Drop a file here</p>
+        <p class="dropzone-hint">or click to browse</p>
+      </section>
+
+      <section id="workspace" class="workspace" hidden>
+        <div class="file-meta">
+          <p class="file-name" id="fileName">-</p>
+          <p class="file-kind" id="fileKind">-</p>
+        </div>
+
+        <div class="sizes" aria-live="polite">
+          <div class="size-block">
+            <span class="size-label">Original</span>
+            <span class="size-value" id="originalSize">-</span>
+          </div>
+          <div class="size-arrow" aria-hidden="true"></div>
+          <div class="size-block">
+            <span class="size-label">Compressed</span>
+            <span class="size-value" id="compressedSize">-</span>
+          </div>
+          <div class="size-block size-saved">
+            <span class="size-label">Saved</span>
+            <span class="size-value" id="savedAmount">-</span>
+          </div>
+        </div>
+
+        <p class="status" id="statusText"></p>
+
+        <div class="progress" id="progress" hidden>
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <form id="controls" class="controls"></form>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="resetBtn">Another file</button>
+          <button type="button" class="btn btn-primary" id="saveBtn" disabled>Save As...</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/renderer.js"></script>
+  </body>
+</html>
